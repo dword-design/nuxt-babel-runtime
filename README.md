@@ -14,7 +14,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-
+Nuxt CLI that supports babel. Inspired by @nuxt/typescript-runtime.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
