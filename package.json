@@ -23,8 +23,7 @@
   "dependencies": {
     "@babel/core": "^7.10.2",
     "@babel/register": "^7.10.1",
-    "@nuxt/cli": "^2.12.2",
-    "nuxt": "^2.12.2"
+    "@nuxt/cli": "^2.11.0"
   },
   "devDependencies": {
     "@dword-design/base": "^6.15.5",
@@ -32,10 +31,14 @@
     "@dword-design/puppeteer": "^1.0.2",
     "execa": "^4.0.2",
     "fs-extra": "^9.0.1",
+    "nuxt": "^2.12.2",
     "output-files": "^1.1.16",
     "port-ready": "^0.1.0",
     "tree-kill-promise": "^1.0.1",
     "with-local-tmp-dir": "^2.2.10"
+  },
+  "peerDependencies": {
+    "nuxt": "^2.11.0"
   },
   "publishConfig": {
     "access": "public"

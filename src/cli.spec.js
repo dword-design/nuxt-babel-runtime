@@ -1,11 +1,11 @@
-import withLocalTmpDir from 'with-local-tmp-dir'
-import outputFiles from 'output-files'
 import { endent } from '@dword-design/functions'
-import execa from 'execa'
-import kill from 'tree-kill-promise'
-import { outputFile } from 'fs-extra'
-import portReady from 'port-ready'
 import puppeteer from '@dword-design/puppeteer'
+import execa from 'execa'
+import { outputFile } from 'fs-extra'
+import outputFiles from 'output-files'
+import portReady from 'port-ready'
+import kill from 'tree-kill-promise'
+import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
   valid: () =>

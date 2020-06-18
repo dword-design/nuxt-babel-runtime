@@ -10,5 +10,4 @@ const run = async () => {
     process.exit(1)
   }
 }
-
 run()
