@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/dword-design/nuxt-babel-runtime/compare/v1.0.0...v2.0.0) (2020-06-18)
+
+
+### Features
+
+* make nuxt a peer dependency ([a6290d9](https://github.com/dword-design/nuxt-babel-runtime/commit/a6290d964c464816a29ab029ce1e09aab0f8d0ca))
+
+
+### BREAKING CHANGES
+
+* make nuxt a peer dependency
+
 # 1.0.0 (2020-06-13)
 
 
