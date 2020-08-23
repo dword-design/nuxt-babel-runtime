@@ -8,28 +8,6 @@ import kill from 'tree-kill-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 export default {
-  valid: () =>
-    withLocalTmpDir(async () => {
-      const browser = await puppeteer.launch()
-      const page = await browser.newPage()
-      await outputFile(
-        'pages/index.vue',
-        endent`
-      <template>
-        <div>Hello world</div>
-      </template>
-
-    `
-      )
-      await execa(require.resolve('./cli'), ['build'])
-      const childProcess = execa(require.resolve('./cli'), ['start'])
-      await portReady(3000)
-      await page.goto('http://localhost:3000')
-      expect(await page.$eval('div', div => div.textContent)).toEqual(
-        'Hello world'
-      )
-      await Promise.all([kill(childProcess.pid), browser.close()])
-    }),
   babel: () =>
     withLocalTmpDir(async () => {
       await outputFiles({
@@ -68,5 +46,27 @@ export default {
       } catch (error) {
         console.log(error.message)
       }
+    }),
+  valid: () =>
+    withLocalTmpDir(async () => {
+      const browser = await puppeteer.launch()
+      const page = await browser.newPage()
+      await outputFile(
+        'pages/index.vue',
+        endent`
+      <template>
+        <div>Hello world</div>
+      </template>
+
+    `
+      )
+      await execa(require.resolve('./cli'), ['build'])
+      const childProcess = execa(require.resolve('./cli'), ['start'])
+      await portReady(3000)
+      await page.goto('http://localhost:3000')
+      expect(await page.$eval('div', div => div.textContent)).toEqual(
+        'Hello world'
+      )
+      await Promise.all([kill(childProcess.pid), browser.close()])
     }),
 }
