@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.2...v2.0.3) (2020-12-10)
+
+
+### Bug Fixes
+
+* **deps:** update dependency execa to v5 ([e2ce5f8](https://github.com/dword-design/nuxt-babel-runtime/commit/e2ce5f819b5c10c95620165f1af41249728bda87))
+
 ## [2.0.2](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.1...v2.0.2) (2020-12-02)
 
 
