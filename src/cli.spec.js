@@ -3,6 +3,7 @@ import puppeteer from '@dword-design/puppeteer'
 import execa from 'execa'
 import { outputFile } from 'fs-extra'
 import outputFiles from 'output-files'
+import P from 'path'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
 import withLocalTmpDir from 'with-local-tmp-dir'
@@ -42,7 +43,9 @@ export default {
       try {
         await expect(
           execa(require.resolve('./cli'), ['build'])
-        ).rejects.toThrow('Unexpected token, expected ";"')
+        ).rejects.toThrow(
+          `${P.join('foo', 'index.js')}: Missing semicolon (1:3)`
+        )
       } catch (error) {
         console.log(error.message)
       }
