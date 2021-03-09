@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.5...v2.0.6) (2021-03-09)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/puppeteer to v3 ([c188cc6](https://github.com/dword-design/nuxt-babel-runtime/commit/c188cc62956a3d054ea20365cee3eac0bb7c8219))
+
 ## [2.0.5](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.4...v2.0.5) (2021-02-17)
 
 
