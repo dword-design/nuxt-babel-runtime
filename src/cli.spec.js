@@ -18,6 +18,7 @@ export default {
       `,
         'nuxt.config.js': endent`
         export default {
+          createRequire: 'native',
           modules: [
             '~/modules/foo',
           ],
@@ -33,6 +34,7 @@ export default {
         'modules/foo/index.js': 'foo bar',
         'nuxt.config.js': endent`
         export default {
+          createRequire: 'native',
           modules: [
             '~/modules/foo',
           ],
