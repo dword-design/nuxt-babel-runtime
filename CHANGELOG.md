@@ -1,3 +1,10 @@
+## [2.0.7](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.6...v2.0.7) (2021-03-09)
+
+
+### Bug Fixes
+
+* update dependency nuxt to ~2.15.0 ([8f9a116](https://github.com/dword-design/nuxt-babel-runtime/commit/8f9a1168d9430fafd900a3b1acdbb35f433aaa38))
+
 ## [2.0.6](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.5...v2.0.6) (2021-03-09)
 
 
