@@ -1,3 +1,10 @@
+## [2.0.9](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.8...v2.0.9) (2021-03-22)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#13](https://github.com/dword-design/nuxt-babel-runtime/issues/13)) ([0c60b89](https://github.com/dword-design/nuxt-babel-runtime/commit/0c60b8991a6d42188ce45605d884fce0390ee999))
+
 ## [2.0.8](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.7...v2.0.8) (2021-03-17)
 
 
