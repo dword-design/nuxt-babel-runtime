@@ -1,3 +1,10 @@
+## [2.0.10](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.9...v2.0.10) (2021-03-23)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v3 ([#14](https://github.com/dword-design/nuxt-babel-runtime/issues/14)) ([776467c](https://github.com/dword-design/nuxt-babel-runtime/commit/776467c7d182e861f659e41ca6a6fd861719fb8b))
+
 ## [2.0.9](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.8...v2.0.9) (2021-03-22)
 
 
