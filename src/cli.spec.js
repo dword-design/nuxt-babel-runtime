@@ -55,6 +55,7 @@ export default {
   valid: () =>
     withLocalTmpDir(async () => {
       const browser = await puppeteer.launch()
+
       const page = await browser.newPage()
       await outputFile(
         'pages/index.vue',
@@ -66,6 +67,7 @@ export default {
     `
       )
       await execa(require.resolve('./cli'), ['build'])
+
       const childProcess = execa(require.resolve('./cli'), ['start'])
       await portReady(3000)
       await page.goto('http://localhost:3000')
