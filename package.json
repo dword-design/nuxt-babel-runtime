@@ -37,7 +37,7 @@
     "output-files": "^1.1.16",
     "port-ready": "^0.1.0",
     "tree-kill-promise": "^1.0.1",
-    "with-local-tmp-dir": "^2.2.10"
+    "with-local-tmp-dir": "^2.2.18"
   },
   "peerDependencies": {
     "nuxt": "^2.11.0"
