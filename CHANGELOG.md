@@ -1,3 +1,19 @@
+# [3.0.0](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.14...v3.0.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base to v8 ([#29](https://github.com/dword-design/nuxt-babel-runtime/issues/29)) ([97597e4](https://github.com/dword-design/nuxt-babel-runtime/commit/97597e40062a81717c9a8d87b03eafe6e5beb8ed))
+
+
+### BREAKING CHANGES
+
+* require Node.js >= 12
+
+Co-authored-by: Renovate Bot <bot@renovateapp.com>
+Co-authored-by: Sebastian Landwehr <info@dword-design.de>
+Co-authored-by: GitHub Actions <actions@github.com>
+
 ## [2.0.14](https://github.com/dword-design/nuxt-babel-runtime/compare/v2.0.13...v2.0.14) (2021-04-26)
 
 
