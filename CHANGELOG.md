@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.1...v3.0.2) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v4 ([#35](https://github.com/dword-design/nuxt-babel-runtime/issues/35)) ([c1ea6b3](https://github.com/dword-design/nuxt-babel-runtime/commit/c1ea6b365dc92a66e51b79588d2a05f02d4040e0))
+
 ## [3.0.1](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.0...v3.0.1) (2021-05-04)
 
 
