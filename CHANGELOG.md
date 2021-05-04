@@ -1,3 +1,13 @@
+## [3.0.3](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.2...v3.0.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/puppeteer to v5 ([#31](https://github.com/dword-design/nuxt-babel-runtime/issues/31)) ([d51f491](https://github.com/dword-design/nuxt-babel-runtime/commit/d51f491515973d3a21aaa98103861c2055a9516a))
+* update dependency fs-extra to v10 ([#32](https://github.com/dword-design/nuxt-babel-runtime/issues/32)) ([70d3315](https://github.com/dword-design/nuxt-babel-runtime/commit/70d3315b2bbd141657f3c8a0fa61be8637b9407b))
+* update dependency output-files to v2 ([#33](https://github.com/dword-design/nuxt-babel-runtime/issues/33)) ([b861924](https://github.com/dword-design/nuxt-babel-runtime/commit/b861924cf3fdc61ddeda7daa02f2b629af7c287f))
+* update dependency tree-kill-promise to v2 ([#34](https://github.com/dword-design/nuxt-babel-runtime/issues/34)) ([a1a0ccb](https://github.com/dword-design/nuxt-babel-runtime/commit/a1a0ccbf01c5d22e6a7c372c33f9653b039d4765))
+
 ## [3.0.2](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.1...v3.0.2) (2021-05-04)
 
 
