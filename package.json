@@ -47,12 +47,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "baseConfig": {
-    "depcheckConfig": {
-      "ignoreMatches": [
-        "nuxt"
-      ]
-    }
   }
 }
