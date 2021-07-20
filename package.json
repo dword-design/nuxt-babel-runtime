@@ -1,6 +1,6 @@
 {
   "name": "nuxt-babel-runtime",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Nuxt CLI that supports babel. Inspired by @nuxt/typescript-runtime.",
   "repository": "dword-design/nuxt-babel-runtime",
   "funding": "https://github.com/sponsors/dword-design",
