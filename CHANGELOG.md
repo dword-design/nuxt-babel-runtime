@@ -1,3 +1,10 @@
+## [3.0.10](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.9...v3.0.10) (2022-01-12)
+
+
+### Bug Fixes
+
+* update config files ([f6dff79](https://github.com/dword-design/nuxt-babel-runtime/commit/f6dff79cc9219a108d089e9f5b7f2919b1c83d0f))
+
 ## [3.0.9](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.8...v3.0.9) (2022-01-04)
 
 
