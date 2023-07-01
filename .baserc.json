@@ -11,5 +11,6 @@
     { "repository": "nuxt-modernizr", "description": "Adds a Modernizr build to your Nuxt.js app." },
     { "repository": "nuxt-mermaid-string", "description": "Embed a Mermaid diagram in a Nuxt.js app by providing its diagram string." },
     { "repository": "nuxt-content-git", "description": "Additional module for @nuxt/content that replaces or adds createdAt and updatedAt dates based on the git history." }
-  ]
+  ],
+  "macos": false
 }
