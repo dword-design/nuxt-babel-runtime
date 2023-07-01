@@ -33,14 +33,14 @@
     "@dword-design/puppeteer": "^5.0.0",
     "execa": "^5.0.0",
     "fs-extra": "^10.0.0",
-    "nuxt": "~2.15.0",
+    "nuxt": "~3.6.0",
     "output-files": "^2.0.0",
     "port-ready": "^0.1.0",
     "tree-kill-promise": "^2.0.0",
     "with-local-tmp-dir": "^4.0.0"
   },
   "peerDependencies": {
-    "nuxt": "^2.11.0"
+    "nuxt": "^2.11.0 || ^3.0.0"
   },
   "engines": {
     "node": ">=12"
