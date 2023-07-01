@@ -70,7 +70,9 @@ export default tester(
     },
     'build errors': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
-      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow('Missing semicolon.')
+      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow(
+        'Missing semicolon.',
+      )
     },
     async component() {
       await fs.outputFile(
