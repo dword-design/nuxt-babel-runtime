@@ -4,7 +4,12 @@
 
 <!-- BADGES/ -->
   <p>
-    <img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible"><a href="https://github.com/dword-design/nuxt-babel-runtime/actions">
+    <a href="https://npmjs.org/package/nuxt-babel-runtime">
+      <img
+        src="https://img.shields.io/npm/v/nuxt-babel-runtime.svg"
+        alt="npm version"
+      >
+    </a><img src="https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue" alt="Linux macOS Windows compatible"><a href="https://github.com/dword-design/nuxt-babel-runtime/actions">
       <img
         src="https://github.com/dword-design/nuxt-babel-runtime/workflows/build/badge.svg"
         alt="Build status"
