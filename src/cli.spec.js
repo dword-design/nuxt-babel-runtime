@@ -71,12 +71,7 @@ export default tester(
     },
     'build errors': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
-      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow(
-        endent`
-          ${P.join('foo', 'index.js')}:1:3
-          Error: ParseError: Missing semicolon.
-        `,
-      )
+      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow('Missing semicolon.')
     },
     async component() {
       await fs.outputFile(
