@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.10...v4.0.0) (2023-07-01)
+
+
+### Bug Fixes
+
+* foo ([0f27eab](https://github.com/dword-design/nuxt-babel-runtime/commit/0f27eab4e3529505243710f7fe1396531f852d0b))
+* foo ([ca7caf9](https://github.com/dword-design/nuxt-babel-runtime/commit/ca7caf915c520598935750dc8dfa79856ecd1de1))
+* foo ([a56677b](https://github.com/dword-design/nuxt-babel-runtime/commit/a56677bde459c930ac3956dad15241329e982631))
+* foo ([3670e12](https://github.com/dword-design/nuxt-babel-runtime/commit/3670e1232ce730381071a6a8efdf510eab3419de))
+* lock file maintenance ([#92](https://github.com/dword-design/nuxt-babel-runtime/issues/92)) ([c80fb73](https://github.com/dword-design/nuxt-babel-runtime/commit/c80fb7368a91bd210f8ee1d44ec426e8b65b04dc))
+* update dependency @babel/core to v7.22.5 ([d2c75a3](https://github.com/dword-design/nuxt-babel-runtime/commit/d2c75a33430e3ac77a0bcfa0cafd6bbe92642459))
+
+
+### BREAKING CHANGES
+
+* drop node 12 and 14, nuxt 3, esm
+
 ## [3.0.10](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.9...v3.0.10) (2022-01-12)
 
 
