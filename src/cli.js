@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 
-import api from '.'
+import api from './index.js'
 
-const run = async () => {
-  try {
-    await api()
-  } catch (error) {
-    console.error(error)
-    process.exit(1)
-  }
+try {
+  await api(process.argv[2], process.argv.slice(3))
+} catch (error) {
+  console.error(error)
+  process.exit(1)
 }
-run()
