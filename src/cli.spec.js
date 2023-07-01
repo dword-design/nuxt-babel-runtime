@@ -9,7 +9,6 @@ import fs from 'fs-extra'
 import { createRequire } from 'module'
 import nuxtDevReady from 'nuxt-dev-ready'
 import outputFiles from 'output-files'
-import P from 'path'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
 
