@@ -203,9 +203,17 @@ export default tester(
       const oldNodeOptions = process.env.NODE_OPTIONS
       process.env.NODE_OPTIONS = ''
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const output = await execa(resolver.resolve('./cli.js'), ['build'])
+      expect(output.stderr).not.toMatch(
+        'ExperimentalWarning: Custom ESM Loaders is an experimental feature and might change at any time\n',
+      )
+      expect(output.stderr).not.toMatch(
+        'DeprecationWarning: Obsolete loader hook(s) supplied and will be ignored: getFormat, transformSource\n',
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['start'])
       try {
-        await nuxtDevReady()
+        await portReady(3000)
         await this.page.goto('http://localhost:3000')
         await this.page.waitForSelector('.foo')
       } finally {
