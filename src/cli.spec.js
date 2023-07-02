@@ -12,7 +12,7 @@ import outputFiles from 'output-files'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
 
-const _require = createRequire(import.meta.url)
+const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
@@ -26,7 +26,7 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
 
@@ -44,7 +44,7 @@ export default tester(
         'modules/foo/index.js',
         'export default () => console.log(1 |> (x => x * 2))',
       )
-      await execa(_require.resolve('./cli'), ['build'])
+      await execa(resolver.resolve('./cli.js'), ['build'])
     },
     async build() {
       await fs.outputFile(
@@ -55,9 +55,9 @@ export default tester(
           </template>
         `,
       )
-      await execa(_require.resolve('./cli'), ['build'])
+      await execa(resolver.resolve('./cli.js'), ['build'])
 
-      const nuxt = execa(_require.resolve('./cli'), ['start'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['start'])
       try {
         await portReady(3000)
         await this.page.goto('http://localhost:3000')
@@ -70,9 +70,9 @@ export default tester(
     },
     'build errors': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
-      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow(
-        'Missing semicolon.',
-      )
+      await expect(
+        execa(resolver.resolve('./cli.js'), ['build']),
+      ).rejects.toThrow('Missing semicolon.')
     },
     async component() {
       await fs.outputFile(
@@ -88,7 +88,7 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
@@ -113,7 +113,7 @@ export default tester(
         `,
       })
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
@@ -134,7 +134,7 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
@@ -177,7 +177,9 @@ export default tester(
           </script>
         `,
       })
-      await expect(execa(_require.resolve('./cli'), ['build'])).rejects.toThrow(
+      await expect(
+        execa(resolver.resolve('./cli.js'), ['build']),
+      ).rejects.toThrow(
         'This experimental syntax requires enabling the parser plugin: "pipelineOperator".',
       )
     },
@@ -201,9 +203,7 @@ export default tester(
       const oldNodeOptions = process.env.NODE_OPTIONS
       process.env.NODE_OPTIONS = ''
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'], {
-        env: { NODE_OPTIONS: '--experimental-loader=babel-register-esm' },
-      })
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
@@ -227,7 +227,7 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
@@ -259,7 +259,7 @@ export default tester(
         `,
       })
 
-      const nuxt = execa(_require.resolve('./cli'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
