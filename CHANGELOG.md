@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/dword-design/nuxt-babel-runtime/compare/v4.0.0...v4.0.1) (2023-07-02)
+
+
+### Bug Fixes
+
+* inject experimental loader ([ee6e3c8](https://github.com/dword-design/nuxt-babel-runtime/commit/ee6e3c8ea87c689e56a80b81f3b86c91cf01ee30))
+
 # [4.0.0](https://github.com/dword-design/nuxt-babel-runtime/compare/v3.0.10...v4.0.0) (2023-07-01)
 
 
