@@ -26,7 +26,7 @@
     "test": "base test"
   },
   "resolutions": {
-    "nuxi": "3.6.5"
+    "nuxi": "3.7.3"
   },
   "dependencies": {
     "@babel/core": "^7.10.2",
