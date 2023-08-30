@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/dword-design/nuxt-babel-runtime/compare/v4.0.3...v4.0.4) (2023-08-30)
+
+
+### Bug Fixes
+
+* fix ([52abdea](https://github.com/dword-design/nuxt-babel-runtime/commit/52abdeadbb7712063283dd0761e7a1dbc53e69dd))
+
 ## [4.0.3](https://github.com/dword-design/nuxt-babel-runtime/compare/v4.0.2...v4.0.3) (2023-08-30)
 
 
