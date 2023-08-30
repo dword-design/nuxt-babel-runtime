@@ -145,6 +145,100 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
+    async 'dev NITRO_PORT env variable'() {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="foo">Hello world</div>
+          </template>
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { NITRO_PORT: 4000 },
+      })
+      try {
+        await nuxtDevReady(4000)
+        await this.page.goto('http://localhost:4000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          'Hello world',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
+    async 'dev NUXT_PORT env variable'() {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="foo">Hello world</div>
+          </template>
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { NUXT_PORT: 4000 },
+      })
+      try {
+        await nuxtDevReady(4000)
+        await this.page.goto('http://localhost:4000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          'Hello world',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
+    async 'dev PORT env variable'() {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="foo">Hello world</div>
+          </template>
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { PORT: 4000 },
+      })
+      try {
+        await nuxtDevReady(4000)
+        await this.page.goto('http://localhost:4000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          'Hello world',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
+    async 'dev port config variable'() {
+      await outputFiles({
+        'nuxt.config.js': endent`
+          export default {
+            devServer: { port: 4000 },
+          }
+        `,
+        'pages/index.vue': endent`
+          <template>
+            <div class="foo">Hello world</div>
+          </template>
+        `,
+      })
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      try {
+        await nuxtDevReady(4000)
+        await this.page.goto('http://localhost:4000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          'Hello world',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
     'do not transpile vue in node_modules': async () => {
       await outputFiles({
         'node_modules/foo': {

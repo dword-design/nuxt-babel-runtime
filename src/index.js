@@ -1,4 +1,5 @@
 import { transform } from '@babel/core'
+import { loadNuxtConfig } from '@nuxt/kit'
 import { babel as rollupPluginBabel } from '@rollup/plugin-babel'
 import { parseVueRequest } from '@vitejs/plugin-vue'
 import { parse } from '@vue/compiler-sfc'
@@ -6,8 +7,18 @@ import { runCommand } from 'nuxi'
 import vitePluginBabel from 'vite-plugin-babel'
 import vueSfcDescriptorToString from 'vue-sfc-descriptor-to-string'
 
-export default (command, args) =>
-  runCommand(command, args, {
+export default async (command, args) => {
+  command = command === 'dev' ? '_dev' : command
+  if (command === '_dev') {
+    const nuxtConfig = await loadNuxtConfig()
+    process.env._PORT =
+      process.env.NUXT_PORT ||
+      process.env.NITRO_PORT ||
+      process.env.PORT ||
+      nuxtConfig.devServer.port.toString()
+  }
+
+  return runCommand(command, args, {
     overrides: {
       nitro: {
         rollupConfig: {
@@ -51,3 +62,4 @@ export default (command, args) =>
       },
     },
   })
+}
