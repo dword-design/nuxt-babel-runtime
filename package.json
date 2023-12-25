@@ -30,7 +30,7 @@
     "@dword-design/suppress-babel-register-esm-warning": "^1.1.10",
     "@nuxt/kit": "^3.7.0",
     "@rollup/plugin-babel": "^6.0.3",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue": "^5.0.0",
     "@vue/compiler-sfc": "^3.3.4",
     "depcheck-package-name": "^3.0.1",
     "execa": "^7.1.1",
