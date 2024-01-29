@@ -26,9 +26,11 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], { stdio: 'inherit' })
       try {
+        console.log('starting')
         await nuxtDevReady()
+        console.log('ready')
 
         const result =
           axios.get('http://localhost:3000/api/foo')
