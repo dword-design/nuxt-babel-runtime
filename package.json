@@ -28,7 +28,6 @@
   "dependencies": {
     "@babel/core": "^7.10.2",
     "@dword-design/suppress-babel-register-esm-warning": "^1.1.10",
-    "@nuxt/kit": "^3.7.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@vitejs/plugin-vue": "^5.0.3",
     "@vue/compiler-sfc": "^3.3.4",

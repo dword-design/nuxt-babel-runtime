@@ -16,7 +16,7 @@ const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
-    'ONLY api': async () => {
+    api: async () => {
       await fs.outputFile(
         'server/api/foo.get.js',
         endent`
@@ -39,14 +39,7 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
-    babel: async () => {
-      await fs.outputFile(
-        'modules/foo/index.js',
-        'export default () => console.log(1 |> (x => x * 2))',
-      )
-      await execa(resolver.resolve('./cli.js'), ['build'])
-    },
-    async 'ONLY build'() {
+    async build() {
       await fs.outputFile(
         'pages/index.vue',
         endent`
@@ -67,6 +60,13 @@ export default tester(
       } finally {
         await kill(nuxt.pid)
       }
+    },
+    babel: async () => {
+      await fs.outputFile(
+        'modules/foo/index.js',
+        'export default () => console.log(1 |> (x => x * 2))',
+      )
+      await execa(resolver.resolve('./cli.js'), ['build'])
     },
     'build errors': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
