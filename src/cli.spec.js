@@ -16,7 +16,7 @@ const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
-    api: async () => {
+    'ONLY api': async () => {
       await fs.outputFile(
         'server/api/foo.get.js',
         endent`
@@ -26,11 +26,9 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], { stdio: 'inherit' })
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
-        console.log('starting')
         await nuxtDevReady()
-        console.log('ready')
 
         const result =
           axios.get('http://localhost:3000/api/foo')
@@ -48,7 +46,7 @@ export default tester(
       )
       await execa(resolver.resolve('./cli.js'), ['build'])
     },
-    async build() {
+    async 'ONLY build'() {
       await fs.outputFile(
         'pages/index.vue',
         endent`
