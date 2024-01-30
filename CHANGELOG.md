@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/dword-design/nuxt-babel-runtime/compare/v4.0.4...v5.0.0) (2024-01-30)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#101](https://github.com/dword-design/nuxt-babel-runtime/issues/101)) ([ae48214](https://github.com/dword-design/nuxt-babel-runtime/commit/ae48214cbb8df96f15f3ced4d664507ff7c3762c))
+
+
+### BREAKING CHANGES
+
+* nodejs >= 18
+
 ## [4.0.4](https://github.com/dword-design/nuxt-babel-runtime/compare/v4.0.3...v4.0.4) (2023-08-30)
 
 
