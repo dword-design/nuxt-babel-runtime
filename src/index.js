@@ -7,7 +7,7 @@ import vitePluginBabel from 'vite-plugin-babel'
 import vueSfcDescriptorToString from 'vue-sfc-descriptor-to-string'
 
 export default (command, args) =>
-  runCommand(command, args, {
+  runCommand(command, [...args, '--no-fork'], {
     overrides: {
       nitro: {
         rollupConfig: {

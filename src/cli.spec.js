@@ -315,6 +315,31 @@ export default tester(
         process.env.NODE_OPTIONS = oldNodeOptions
       }
     },
+    'non-testing env': async () => {
+      await fs.outputFile(
+        'server/api/foo.get.js',
+        endent`
+          import { defineEventHandler } from '#imports'
+
+          export default defineEventHandler(() => 1 |> x => x * 2)
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { NODE_ENV: '' },
+      })
+      try {
+        await nuxtDevReady()
+
+        const result =
+          axios.get('http://localhost:3000/api/foo')
+          |> await
+          |> property('data')
+        expect(result).toEqual(2)
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
     async 'pipeline operator await in component'() {
       await fs.outputFile(
         'pages/index.vue',
