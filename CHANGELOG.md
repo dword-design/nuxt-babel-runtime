@@ -1,3 +1,10 @@
+## [5.0.2](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.1...v5.0.2) (2024-02-13)
+
+
+### Bug Fixes
+
+* foo ([bbf566b](https://github.com/dword-design/nuxt-babel-runtime/commit/bbf566b856d3e05729edd9c42c7098818454eb52))
+
 ## [5.0.1](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.0...v5.0.1) (2024-02-12)
 
 
