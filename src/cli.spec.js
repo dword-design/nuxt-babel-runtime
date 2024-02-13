@@ -277,7 +277,35 @@ export default tester(
         'This experimental syntax requires enabling the parser plugin: "pipelineOperator".',
       )
     },
-    async 'file imported from api'() {
+    async 'file imported from api dev'() {
+      await outputFiles({
+        'model/foo.js': 'export default 1 |> x => x * 2',
+        'pages/index.vue': endent`
+          <template>
+            <div class="foo" />
+          </template>
+        `,
+        'server/api/foo.get.js': endent`
+          import { defineEventHandler } from '#imports'
+
+          import foo from '@/model/foo.js'
+
+          export default defineEventHandler(() => foo)
+        `,
+      })
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { NODE_OPTIONS: '' },
+      })
+      try {
+        await nuxtDevReady()
+        await this.page.goto('http://localhost:3000')
+        await this.page.waitForSelector('.foo')
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
+    async 'file imported from api no console warnings'() {
       await outputFiles({
         'model/foo.js': 'export default 1 |> x => x * 2',
         'pages/index.vue': endent`

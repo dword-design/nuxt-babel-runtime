@@ -1507,7 +1507,7 @@
   resolved "https://registry.yarnpkg.com/@dword-design/setup-test/-/setup-test-1.0.2.tgz#0bea8800f2349de41a9f42986d09bf89ff69fd1c"
   integrity sha512-W861E4cbZmUaYri3mhZNfpo2Yxc1hHPP0v5iDZGE+h9EHplY+8tzWaTNHIF67DmrcDLP79zxd/lkJX0xZs0l8Q==
 
-"@dword-design/suppress-babel-register-esm-warning@^1.1.0":
+"@dword-design/suppress-babel-register-esm-warning@^1.1.0", "@dword-design/suppress-babel-register-esm-warning@^1.1.10":
   version "1.1.10"
   resolved "https://registry.yarnpkg.com/@dword-design/suppress-babel-register-esm-warning/-/suppress-babel-register-esm-warning-1.1.10.tgz#1fc68ca173a513a9f46642740e47cc3847cf391f"
   integrity sha512-VkXvIeTTutLLGr05RQEcuAs+ePlJa3yN2xuUuA3OtfXywdKlxA9r5xMFzGnHVc/y8T/95Z2eOEBpCn2QkChokg==
@@ -13195,7 +13195,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-suppress-experimental-warnings@^1.1.0:
+suppress-experimental-warnings@^1.1.0, suppress-experimental-warnings@^1.1.17:
   version "1.1.17"
   resolved "https://registry.yarnpkg.com/suppress-experimental-warnings/-/suppress-experimental-warnings-1.1.17.tgz#5408a8511dcb088c2d28133ce873fef3b3f1d46d"
   integrity sha512-n1huqqtVdNSTV04x0lC9gfBsCl6X+RRA10B6VTw8kQjrNbkwkU6DJB/qTbQFjO+ItYT9VbGe3NvuS4XWq5vUEQ==
