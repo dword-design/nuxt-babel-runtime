@@ -1,3 +1,10 @@
+## [5.0.3](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.2...v5.0.3) (2024-02-13)
+
+
+### Bug Fixes
+
+* bump babel-register-esm ([3bf060f](https://github.com/dword-design/nuxt-babel-runtime/commit/3bf060f261e3fe95365b013a8463d2de34670b51))
+
 ## [5.0.2](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.1...v5.0.2) (2024-02-13)
 
 
