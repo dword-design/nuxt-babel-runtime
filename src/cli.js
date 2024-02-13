@@ -9,7 +9,7 @@ try {
   await execa(
     'node',
     [
-      '--experimental-loader=babel-register-esm',
+      `--experimental-loader=${packageName`babel-register-esm`}`,
       `--require=${packageName`suppress-experimental-warnings`}`,
       `--require=${packageName`@dword-design/suppress-babel-register-esm-warning`}`,
       resolver.resolve('./inner-cli.js'),
