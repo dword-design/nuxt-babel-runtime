@@ -17,31 +17,6 @@ const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
-    async component() {
-      await fs.outputFile(
-        'pages/index.vue',
-        endent`
-          <template>
-            <div class="foo">{{ foo }}</div>
-          </template>
-
-          <script setup>
-          const foo = 1 |> x => x * 2
-          </script>
-        `,
-      )
-
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
-      try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
-        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
-          '2',
-        )
-      } finally {
-        await kill(nuxt.pid)
-      }
-    },
     api: async () => {
       await fs.outputFile(
         'server/api/foo.get.js',
@@ -107,30 +82,51 @@ export default tester(
           </script>
         `,
       )
-      try {
-        await execa(resolver.resolve('./cli.js'), ['build'], {
+      await expect(
+        execa(resolver.resolve('./cli.js'), ['build'], {
           env: { NODE_ENV: '' },
-        })
-      } catch (error) {
-        expect(
-          error.message.includes(endent`
-            ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
+        }),
+      ).rejects.toThrow(endent`
+         ERROR  [at position 6] [vue/compiler-sfc] ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
 
-            ${P.resolve('pages', 'index.vue')}
-            4  |  
-            5  |  <script setup>
-            6  |  foo bar
-               |     ^
-            7  |  </script>
-          `),
-        ).toEqual(true)
-      }
+        ${P.resolve('pages', 'index.vue')}
+        4  |  
+        5  |  <script setup>
+        6  |  foo bar
+           |     ^
+        7  |  </script>
+      `)
     },
     'build error in module': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
       ).rejects.toThrow('Missing semicolon.')
+    },
+    async component() {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="foo">{{ foo }}</div>
+          </template>
+
+          <script setup>
+          const foo = 1 |> x => x * 2
+          </script>
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      try {
+        await nuxtDevReady()
+        await this.page.goto('http://localhost:3000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          '2',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
     },
     async composable() {
       await outputFiles({
