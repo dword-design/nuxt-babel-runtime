@@ -87,7 +87,7 @@ export default tester(
           env: { NODE_ENV: '' },
         }),
       ).rejects.toThrow(endent`
-         ERROR  [at position 6] [vue/compiler-sfc] ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
+        [at position 6] [vue/compiler-sfc] ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
 
         ${P.resolve('pages', 'index.vue')}
         4  |  
