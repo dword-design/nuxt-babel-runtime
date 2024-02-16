@@ -31,9 +31,7 @@ export default tester(
         `,
       )
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
-        stdio: 'inherit',
-      })
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
       try {
         await nuxtDevReady()
         await this.page.goto('http://localhost:3000')
