@@ -11,6 +11,7 @@ import nuxtDevReady from 'nuxt-dev-ready'
 import outputFiles from 'output-files'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
+import P from 'path'
 
 const resolver = createRequire(import.meta.url)
 
@@ -68,7 +69,7 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
-    'build errors': async () => {
+    'build error in module': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
@@ -341,6 +342,31 @@ export default tester(
       } finally {
         await kill(nuxt.pid)
         process.env.NODE_OPTIONS = oldNodeOptions
+      }
+    },
+    'build error in Vue': async () => {
+      await fs.outputFile('pages/index.vue', endent`
+        <template>
+          <div />
+        </template>
+
+        <script setup>
+        foo bar
+        </script>
+      `)
+      try {
+        await execa(resolver.resolve('./cli.js'), ['build'], { env: { NODE_ENV: '' } })
+      } catch (error) {
+        expect(error.message.includes(endent`
+          ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
+          
+          ${P.resolve('pages', 'index.vue')}
+          4  |  
+          5  |  <script setup>
+          6  |  foo bar
+             |     ^
+          7  |  </script>
+        `)).toEqual(true)
       }
     },
     'non-testing env': async () => {

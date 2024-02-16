@@ -5,6 +5,8 @@ import { parse } from '@vue/compiler-sfc'
 import { runCommand } from 'nuxi'
 import vitePluginBabel from 'vite-plugin-babel'
 import vueSfcDescriptorToString from 'vue-sfc-descriptor-to-string'
+import { generateCodeFrame } from '@vue/compiler-dom'
+import { endent } from '@dword-design/functions'
 
 export default (command, args) =>
   runCommand(command, [...args, '--no-fork'], {
@@ -31,12 +33,26 @@ export default (command, args) =>
                     sfc.descriptor[section] &&
                     sfc.descriptor[section].lang === undefined
                   ) {
-                    sfc.descriptor[section].content = await transform(
-                      sfc.descriptor[section].content,
-                      {
-                        filename: query.filename,
-                      },
-                    ).code
+                    try {
+                      const { code } = await transform(
+                        sfc.descriptor[section].content,
+                        {
+                          filename: query.filename,
+                        },
+                      )
+                      sfc.descriptor[section].content = code
+                    } catch (error) {
+                      error.message = endent`[vue/compiler-sfc] ${error.message.split('\n')[0]}
+
+                        ${query.filename}
+                        ${generateCodeFrame(
+                          sfc.descriptor.source,
+                          error.pos + sfc.descriptor[section].loc.start.offset,
+                          error.pos + sfc.descriptor[section].loc.start.offset + 1
+                        )}
+                      `
+                      throw error
+                    }
                   }
                 }
 
