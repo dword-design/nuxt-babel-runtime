@@ -17,7 +17,7 @@ const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
-    async 'ONLY component'() {
+    async component() {
       await fs.outputFile(
         'pages/index.vue',
         endent`

@@ -34,12 +34,11 @@ export default (command, args) =>
                     sfc.descriptor[section].lang === undefined
                   ) {
                     try {
-                      sfc.descriptor[section].content = (await transform(
-                        sfc.descriptor[section].content,
-                        {
+                      sfc.descriptor[section].content = (
+                        await transform(sfc.descriptor[section].content, {
                           filename: query.filename,
-                        },
-                      )).code
+                        })
+                      ).code
                     } catch (error) {
                       error.message = endent`
                         [vue/compiler-sfc] ${error.message.split('\n')[0]}
