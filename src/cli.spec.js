@@ -9,14 +9,41 @@ import fs from 'fs-extra'
 import { createRequire } from 'module'
 import nuxtDevReady from 'nuxt-dev-ready'
 import outputFiles from 'output-files'
+import P from 'path'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
-import P from 'path'
 
 const resolver = createRequire(import.meta.url)
 
 export default tester(
   {
+    async 'ONLY component'() {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div class="foo">{{ foo }}</div>
+          </template>
+
+          <script setup>
+          const foo = 1 |> x => x * 2
+          </script>
+        `,
+      )
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        stdio: 'inherit',
+      })
+      try {
+        await nuxtDevReady()
+        await this.page.goto('http://localhost:3000')
+        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
+          '2',
+        )
+      } finally {
+        await kill(nuxt.pid)
+      }
+    },
     api: async () => {
       await fs.outputFile(
         'server/api/foo.get.js',
@@ -69,36 +96,43 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
+    'build error in Vue': async () => {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div />
+          </template>
+
+          <script setup>
+          foo bar
+          </script>
+        `,
+      )
+      try {
+        await execa(resolver.resolve('./cli.js'), ['build'], {
+          env: { NODE_ENV: '' },
+        })
+      } catch (error) {
+        expect(
+          error.message.includes(endent`
+            ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
+
+            ${P.resolve('pages', 'index.vue')}
+            4  |  
+            5  |  <script setup>
+            6  |  foo bar
+               |     ^
+            7  |  </script>
+          `),
+        ).toEqual(true)
+      }
+    },
     'build error in module': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
       ).rejects.toThrow('Missing semicolon.')
-    },
-    async component() {
-      await fs.outputFile(
-        'pages/index.vue',
-        endent`
-          <template>
-            <div class="foo">{{ foo }}</div>
-          </template>
-
-          <script setup>
-          const foo = 1 |> x => x * 2
-          </script>
-        `,
-      )
-
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
-      try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
-        expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
-          '2',
-        )
-      } finally {
-        await kill(nuxt.pid)
-      }
     },
     async composable() {
       await outputFiles({
@@ -342,31 +376,6 @@ export default tester(
       } finally {
         await kill(nuxt.pid)
         process.env.NODE_OPTIONS = oldNodeOptions
-      }
-    },
-    'build error in Vue': async () => {
-      await fs.outputFile('pages/index.vue', endent`
-        <template>
-          <div />
-        </template>
-
-        <script setup>
-        foo bar
-        </script>
-      `)
-      try {
-        await execa(resolver.resolve('./cli.js'), ['build'], { env: { NODE_ENV: '' } })
-      } catch (error) {
-        expect(error.message.includes(endent`
-          ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
-          
-          ${P.resolve('pages', 'index.vue')}
-          4  |  
-          5  |  <script setup>
-          6  |  foo bar
-             |     ^
-          7  |  </script>
-        `)).toEqual(true)
       }
     },
     'non-testing env': async () => {
