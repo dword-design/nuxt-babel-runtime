@@ -1,6 +1,8 @@
 import { transform } from '@babel/core'
+import { endent } from '@dword-design/functions'
 import { babel as rollupPluginBabel } from '@rollup/plugin-babel'
 import { parseVueRequest } from '@vitejs/plugin-vue'
+import { generateCodeFrame } from '@vue/compiler-dom'
 import { parse } from '@vue/compiler-sfc'
 import { runCommand } from 'nuxi'
 import vitePluginBabel from 'vite-plugin-babel'
@@ -31,12 +33,27 @@ export default (command, args) =>
                     sfc.descriptor[section] &&
                     sfc.descriptor[section].lang === undefined
                   ) {
-                    sfc.descriptor[section].content = await transform(
-                      sfc.descriptor[section].content,
-                      {
-                        filename: query.filename,
-                      },
-                    ).code
+                    try {
+                      sfc.descriptor[section].content = (
+                        await transform(sfc.descriptor[section].content, {
+                          filename: query.filename,
+                        })
+                      ).code
+                    } catch (error) {
+                      error.message = endent`
+                        [vue/compiler-sfc] ${error.message.split('\n')[0]}
+
+                        ${query.filename}
+                        ${generateCodeFrame(
+                          sfc.descriptor.source,
+                          error.pos + sfc.descriptor[section].loc.start.offset,
+                          error.pos +
+                            sfc.descriptor[section].loc.start.offset +
+                            1,
+                        )}
+                      `
+                      throw error
+                    }
                   }
                 }
 

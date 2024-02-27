@@ -9,6 +9,7 @@ import fs from 'fs-extra'
 import { createRequire } from 'module'
 import nuxtDevReady from 'nuxt-dev-ready'
 import outputFiles from 'output-files'
+import P from 'path'
 import portReady from 'port-ready'
 import kill from 'tree-kill-promise'
 
@@ -68,7 +69,35 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
-    'build errors': async () => {
+    'build error in Vue': async () => {
+      await fs.outputFile(
+        'pages/index.vue',
+        endent`
+          <template>
+            <div />
+          </template>
+
+          <script setup>
+          foo bar
+          </script>
+        `,
+      )
+      await expect(
+        execa(resolver.resolve('./cli.js'), ['build'], {
+          env: { NODE_ENV: '' },
+        }),
+      ).rejects.toThrow(endent`
+        [at position 6] [vue/compiler-sfc] ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
+
+        ${P.resolve('pages', 'index.vue').replace(/\\/g, '/')}
+        4  |  
+        5  |  <script setup>
+        6  |  foo bar
+           |     ^
+        7  |  </script>
+      `)
+    },
+    'build error in module': async () => {
       await fs.outputFile('modules/foo/index.js', 'foo bar')
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
