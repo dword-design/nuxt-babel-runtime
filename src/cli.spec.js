@@ -89,7 +89,7 @@ export default tester(
       ).rejects.toThrow(endent`
         [at position 6] [vue/compiler-sfc] ${P.resolve('pages', 'index.vue')}: Missing semicolon. (2:3)
 
-        ${P.resolve('pages', 'index.vue').replace(/\\/g, '/')}
+        ${P.resolve('pages', 'index.vue')/*.replace(/\\/g, '/')*/}
         4  |  
         5  |  <script setup>
         6  |  foo bar
