@@ -1,3 +1,10 @@
+## [5.0.4](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.3...v5.0.4) (2024-02-27)
+
+
+### Bug Fixes
+
+* fix error lines ([#112](https://github.com/dword-design/nuxt-babel-runtime/issues/112)) ([ca199dc](https://github.com/dword-design/nuxt-babel-runtime/commit/ca199dc8d1ea868907e2f51d36065c8faca658eb))
+
 ## [5.0.3](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.2...v5.0.3) (2024-02-13)
 
 
