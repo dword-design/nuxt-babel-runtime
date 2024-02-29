@@ -40,13 +40,6 @@ export default tester(
         await kill(nuxt.pid)
       }
     },
-    babel: async () => {
-      await fs.outputFile(
-        'modules/foo/index.js',
-        'export default () => console.log(1 |> (x => x * 2))',
-      )
-      await execa(resolver.resolve('./cli.js'), ['build'])
-    },
     async build() {
       await fs.outputFile(
         'pages/index.vue',
@@ -371,6 +364,13 @@ export default tester(
         await kill(nuxt.pid)
         process.env.NODE_OPTIONS = oldNodeOptions
       }
+    },
+    module: async () => {
+      await fs.outputFile(
+        'modules/foo.js',
+        'export default () => console.log(1 |> (x => x * 2))',
+      )
+      await execa(resolver.resolve('./cli.js'), ['build'])
     },
     'non-testing env': async () => {
       await fs.outputFile(
