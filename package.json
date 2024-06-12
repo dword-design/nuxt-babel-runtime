@@ -1,6 +1,6 @@
 {
   "name": "nuxt-babel-runtime",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "description": "Nuxt CLI that supports babel. Inspired by @nuxt/typescript-runtime.",
   "repository": "dword-design/nuxt-babel-runtime",
   "funding": "https://github.com/sponsors/dword-design",
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.10.2",
+    "@dword-design/functions": "^5.0.22",
     "@dword-design/suppress-babel-register-esm-warning": "^1.1.10",
     "@dword-design/vite-plugin-vue-babel": "^1.0.0",
     "@rollup/plugin-babel": "^6.0.3",
@@ -40,7 +41,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-pipeline-operator": "^7.22.5",
     "@dword-design/base": "^11.0.2",
-    "@dword-design/functions": "^5.0.22",
     "@dword-design/puppeteer": "^7.0.0",
     "@dword-design/tester": "^2.0.19",
     "@dword-design/tester-plugin-puppeteer": "^3.0.0",
@@ -54,6 +54,7 @@
     "tree-kill-promise": "^3.0.14"
   },
   "peerDependencies": {
+    "@vue/compiler-dom": "*",
     "nuxi": "^3"
   },
   "engines": {
