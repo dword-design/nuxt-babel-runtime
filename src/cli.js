@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import packageName from 'depcheck-package-name'
-import { execa } from 'execa'
-import { createRequire } from 'module'
+import packageName from 'depcheck-package-name';
+import { execa } from 'execa';
+import { createRequire } from 'module';
 
-const resolver = createRequire(import.meta.url)
+const resolver = createRequire(import.meta.url);
+
 try {
   await execa(
     'node',
@@ -16,8 +17,8 @@ try {
       ...process.argv.slice(2),
     ],
     { stdio: 'inherit' },
-  )
+  );
 } catch (error) {
-  console.error(error.message)
-  process.exit(1)
+  console.error(error.message);
+  process.exit(1);
 }
