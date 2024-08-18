@@ -34,7 +34,7 @@
     "babel-register-esm": "npm:@dword-design/babel-register-esm@^2",
     "depcheck-package-name": "^3.0.1",
     "execa": "^9.3.1",
-    "suppress-experimental-warnings": "^1.1.17",
+    "suppress-experimental-warnings": "^2.0.0",
     "vite-plugin-babel": "^1.1.3"
   },
   "devDependencies": {
