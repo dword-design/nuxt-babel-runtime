@@ -1,19 +1,19 @@
-import { endent, property } from '@dword-design/functions'
-import tester from '@dword-design/tester'
-import testerPluginPuppeteer from '@dword-design/tester-plugin-puppeteer'
-import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir'
-import axios from 'axios'
-import packageName from 'depcheck-package-name'
-import { execa } from 'execa'
-import fs from 'fs-extra'
-import { createRequire } from 'module'
-import nuxtDevReady from 'nuxt-dev-ready'
-import outputFiles from 'output-files'
-import P from 'path'
-import portReady from 'port-ready'
-import kill from 'tree-kill-promise'
+import { endent, property } from '@dword-design/functions';
+import tester from '@dword-design/tester';
+import testerPluginPuppeteer from '@dword-design/tester-plugin-puppeteer';
+import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
+import axios from 'axios';
+import packageName from 'depcheck-package-name';
+import { execa } from 'execa';
+import fs from 'fs-extra';
+import { createRequire } from 'module';
+import nuxtDevReady from 'nuxt-dev-ready';
+import outputFiles from 'output-files';
+import P from 'path';
+import portReady from 'port-ready';
+import kill from 'tree-kill-promise';
 
-const resolver = createRequire(import.meta.url)
+const resolver = createRequire(import.meta.url);
 
 export default tester(
   {
@@ -25,19 +25,21 @@ export default tester(
 
           export default defineEventHandler(() => 1 |> x => x * 2)
         `,
-      )
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
+        await nuxtDevReady();
 
         const result =
           axios.get('http://localhost:3000/api/foo')
           |> await
-          |> property('data')
-        expect(result).toEqual(2)
+          |> property('data');
+
+        expect(result).toEqual(2);
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async build() {
@@ -48,18 +50,20 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      )
-      await execa(resolver.resolve('./cli.js'), ['build'])
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['start'])
+      await execa(resolver.resolve('./cli.js'), ['build']);
+      const nuxt = execa(resolver.resolve('./cli.js'), ['start']);
+
       try {
-        await portReady(3000)
-        await this.page.goto('http://localhost:3000')
+        await portReady(3000);
+        await this.page.goto('http://localhost:3000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     'build error in Vue': async () => {
@@ -74,7 +78,8 @@ export default tester(
           foo bar
           </script>
         `,
-      )
+      );
+
       await expect(
         execa(resolver.resolve('./cli.js'), ['build'], {
           env: { NODE_ENV: '' },
@@ -88,13 +93,14 @@ export default tester(
         6  |  foo bar
            |     ^
         7  |  </script>
-      `)
+      `);
     },
     'build error in module': async () => {
-      await fs.outputFile('modules/foo/index.js', 'foo bar')
+      await fs.outputFile('modules/foo/index.js', 'foo bar');
+
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
-      ).rejects.toThrow('Missing semicolon.')
+      ).rejects.toThrow('Missing semicolon.');
     },
     async component() {
       await fs.outputFile(
@@ -108,17 +114,19 @@ export default tester(
           const foo = 1 |> x => x * 2
           </script>
         `,
-      )
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           '2',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async composable() {
@@ -133,17 +141,19 @@ export default tester(
           import { foo } from '#imports'
           </script>
         `,
-      })
+      });
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           '2',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async dev() {
@@ -154,17 +164,19 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      )
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'dev NITRO_PORT env variable'() {
@@ -175,19 +187,21 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      )
+      );
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
         env: { NITRO_PORT: 4000 },
-      })
+      });
+
       try {
-        await nuxtDevReady(4000)
-        await this.page.goto('http://localhost:4000')
+        await nuxtDevReady(4000);
+        await this.page.goto('http://localhost:4000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'dev NUXT_PORT env variable'() {
@@ -198,19 +212,21 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      )
+      );
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
         env: { NUXT_PORT: 4000 },
-      })
+      });
+
       try {
-        await nuxtDevReady(4000)
-        await this.page.goto('http://localhost:4000')
+        await nuxtDevReady(4000);
+        await this.page.goto('http://localhost:4000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'dev PORT env variable'() {
@@ -221,19 +237,21 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      )
+      );
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
         env: { PORT: 4000 },
-      })
+      });
+
       try {
-        await nuxtDevReady(4000)
-        await this.page.goto('http://localhost:4000')
+        await nuxtDevReady(4000);
+        await this.page.goto('http://localhost:4000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'dev port config variable'() {
@@ -248,17 +266,19 @@ export default tester(
             <div class="foo">Hello world</div>
           </template>
         `,
-      })
+      });
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady(4000)
-        await this.page.goto('http://localhost:4000')
+        await nuxtDevReady(4000);
+        await this.page.goto('http://localhost:4000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           'Hello world',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     'do not transpile vue in node_modules': async () => {
@@ -292,12 +312,13 @@ export default tester(
           import Foo from 'foo'
           </script>
         `,
-      })
+      });
+
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
       ).rejects.toThrow(
         'This experimental syntax requires enabling the parser plugin: "pipelineOperator".',
-      )
+      );
     },
     async 'file imported from api dev'() {
       await outputFiles({
@@ -314,17 +335,18 @@ export default tester(
 
           export default defineEventHandler(() => foo)
         `,
-      })
+      });
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
         env: { NODE_OPTIONS: '' },
-      })
+      });
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
-        await this.page.waitForSelector('.foo')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+        await this.page.waitForSelector('.foo');
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'file imported from api no console warnings'() {
@@ -342,35 +364,38 @@ export default tester(
 
           export default defineEventHandler(() => foo)
         `,
-      })
+      });
 
-      const oldNodeOptions = process.env.NODE_OPTIONS
-      process.env.NODE_OPTIONS = ''
+      const oldNodeOptions = process.env.NODE_OPTIONS;
+      process.env.NODE_OPTIONS = '';
+      const output = await execa(resolver.resolve('./cli.js'), ['build']);
 
-      const output = await execa(resolver.resolve('./cli.js'), ['build'])
       expect(output.stderr).not.toMatch(
         'ExperimentalWarning: Custom ESM Loaders is an experimental feature and might change at any time\n',
-      )
+      );
+
       expect(output.stderr).not.toMatch(
         'DeprecationWarning: Obsolete loader hook(s) supplied and will be ignored: getFormat, transformSource\n',
-      )
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['start'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['start']);
+
       try {
-        await portReady(3000)
-        await this.page.goto('http://localhost:3000')
-        await this.page.waitForSelector('.foo')
+        await portReady(3000);
+        await this.page.goto('http://localhost:3000');
+        await this.page.waitForSelector('.foo');
       } finally {
-        await kill(nuxt.pid)
-        process.env.NODE_OPTIONS = oldNodeOptions
+        await kill(nuxt.pid);
+        process.env.NODE_OPTIONS = oldNodeOptions;
       }
     },
     module: async () => {
       await fs.outputFile(
         'modules/foo.js',
         'export default () => console.log(1 |> (x => x * 2))',
-      )
-      await execa(resolver.resolve('./cli.js'), ['build'])
+      );
+
+      await execa(resolver.resolve('./cli.js'), ['build']);
     },
     'non-testing env': async () => {
       await fs.outputFile(
@@ -380,21 +405,23 @@ export default tester(
 
           export default defineEventHandler(() => 1 |> x => x * 2)
         `,
-      )
+      );
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
         env: { NODE_ENV: '' },
-      })
+      });
+
       try {
-        await nuxtDevReady()
+        await nuxtDevReady();
 
         const result =
           axios.get('http://localhost:3000/api/foo')
           |> await
-          |> property('data')
-        expect(result).toEqual(2)
+          |> property('data');
+
+        expect(result).toEqual(2);
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async 'pipeline operator await in component'() {
@@ -409,17 +436,17 @@ export default tester(
           const foo = Promise.resolve(1) |> await |> x => x * 2
           </script>
         `,
-      )
+      );
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
-
-        const foo = await this.page.waitForSelector('.foo')
-        expect(await foo.evaluate(el => el.innerText)).toEqual('2')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+        const foo = await this.page.waitForSelector('.foo');
+        expect(await foo.evaluate(el => el.innerText)).toEqual('2');
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
     async plugin() {
@@ -441,17 +468,19 @@ export default tester(
 
           export default defineNuxtPlugin(() => ({ provide: { foo: 1 |> x => x * 2 } }))
         `,
-      })
+      });
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'])
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
       try {
-        await nuxtDevReady()
-        await this.page.goto('http://localhost:3000')
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+
         expect(await this.page.$eval('.foo', div => div.textContent)).toEqual(
           '2',
-        )
+        );
       } finally {
-        await kill(nuxt.pid)
+        await kill(nuxt.pid);
       }
     },
   },
@@ -473,4 +502,4 @@ export default tester(
         ),
     },
   ],
-)
+);
