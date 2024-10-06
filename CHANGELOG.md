@@ -1,3 +1,11 @@
+## [5.0.7](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.6...v5.0.7) (2024-10-06)
+
+
+### Bug Fixes
+
+* update dependency suppress-experimental-warnings to v2 ([#110](https://github.com/dword-design/nuxt-babel-runtime/issues/110)) ([3643fde](https://github.com/dword-design/nuxt-babel-runtime/commit/3643fde509591ce8a76706db0ac22a77a7b48d83))
+* update pnpm to v9.12.0 ([#122](https://github.com/dword-design/nuxt-babel-runtime/issues/122)) ([b31f866](https://github.com/dword-design/nuxt-babel-runtime/commit/b31f866bdfecea26283a22360deb10e6452d863d))
+
 ## [5.0.6](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.5...v5.0.6) (2024-08-18)
 
 
