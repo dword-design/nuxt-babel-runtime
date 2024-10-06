@@ -1,3 +1,10 @@
+## [5.0.8](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.7...v5.0.8) (2024-10-06)
+
+
+### Bug Fixes
+
+* upgrades ([f1c84da](https://github.com/dword-design/nuxt-babel-runtime/commit/f1c84da0c85bb2c7deeeba72446a55aa36393620))
+
 ## [5.0.7](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.6...v5.0.7) (2024-10-06)
 
 
