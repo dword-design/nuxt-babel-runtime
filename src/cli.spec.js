@@ -96,11 +96,18 @@ export default tester(
       `);
     },
     'build error in module': async () => {
-      await fs.outputFile('modules/foo/index.js', 'foo bar');
+      await fs.outputFile(
+        'modules/foo.js',
+        endent`
+          import { defineNuxtModule } from '@nuxt/kit';
+
+          export default defineNuxtModule({ setup: () => { throw new Error('This is an error') } });
+        `,
+      );
 
       await expect(
         execa(resolver.resolve('./cli.js'), ['build']),
-      ).rejects.toThrow('Missing semicolon.');
+      ).rejects.toThrow('This is an error');
     },
     async component() {
       await fs.outputFile(
@@ -323,6 +330,19 @@ export default tester(
     async 'file imported from api dev'() {
       await outputFiles({
         'model/foo.js': 'export default 1 |> x => x * 2',
+        'nuxt.config.js': endent`
+          import { createResolver } from '@nuxt/kit';
+
+          const resolver = createResolver(import.meta.url);
+
+          export default {
+            nitro: {
+              externals: {
+                inline: [resolver.resolve('./model')],
+              },
+            },
+          };
+        `,
         'pages/index.vue': endent`
           <template>
             <div class="foo" />
