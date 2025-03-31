@@ -338,11 +338,9 @@ export default tester(
           export default {
             nitro: {
               externals: {
-                inline: [
-                  resolver.resolve('./model'),
-                ]
+                inline: [resolver.resolve('./model')],
               },
-            }
+            },
           };
         `,
         'pages/index.vue': endent`
