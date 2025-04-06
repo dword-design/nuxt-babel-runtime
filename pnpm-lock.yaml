@@ -38,12 +38,6 @@ importers:
       nuxi:
         specifier: ^3
         version: 3.24.0
-      playwright:
-        specifier: ^1.51.1
-        version: 1.51.1
-      playwright-chromium:
-        specifier: ^1.51.1
-        version: 1.51.1
       suppress-experimental-warnings:
         specifier: ^2.0.0
         version: 2.0.0
@@ -81,6 +75,12 @@ importers:
       output-files:
         specifier: ^2.0.32
         version: 2.0.32
+      playwright:
+        specifier: ^1.51.1
+        version: 1.51.1
+      playwright-chromium:
+        specifier: ^1.51.1
+        version: 1.51.1
       port-ready:
         specifier: ^0.1.0
         version: 0.1.0
