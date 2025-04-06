@@ -1,3 +1,10 @@
+## [5.0.10](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.9...v5.0.10) (2025-04-06)
+
+
+### Bug Fixes
+
+* migrate to playwright ([6bd017c](https://github.com/dword-design/nuxt-babel-runtime/commit/6bd017ca1701511ce889e9da89b846615e8050b9))
+
 ## [5.0.9](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.8...v5.0.9) (2025-03-31)
 
 
