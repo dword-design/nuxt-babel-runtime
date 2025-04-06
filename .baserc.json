@@ -2,7 +2,8 @@
   "name": "@dword-design/node",
   "depcheckConfig": {
     "ignoreMatches": [
-      "nuxt"
+      "nuxt",
+      "playwright-chromium"
     ]
   },
   "seeAlso": [
