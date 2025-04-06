@@ -1,6 +1,5 @@
 import { endent, property } from '@dword-design/functions';
 import tester from '@dword-design/tester';
-import testerPluginPuppeteer from '@dword-design/tester-plugin-puppeteer';
 import testerPluginTmpDir from '@dword-design/tester-plugin-tmp-dir';
 import axios from 'axios';
 import packageName from 'depcheck-package-name';
@@ -10,6 +9,7 @@ import { createRequire } from 'module';
 import nuxtDevReady from 'nuxt-dev-ready';
 import outputFiles from 'output-files';
 import P from 'path';
+import { chromium } from 'playwright';
 import portReady from 'port-ready';
 import kill from 'tree-kill-promise';
 
@@ -341,6 +341,7 @@ export default tester(
                 inline: [resolver.resolve('./model')],
               },
             },
+            vite: { server: { allowedHosts: ['3000-dworddesign-nuxtbabelru-627nk6ggejf.ws-eu118.gitpod.io'] } },
           };
         `,
         'pages/index.vue': endent`
@@ -358,13 +359,13 @@ export default tester(
       });
 
       const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
-        env: { NODE_OPTIONS: '' },
+        env: { NODE_OPTIONS: '' }, // Remove babel Node.js loader for tests temporarily
       });
 
       try {
         await nuxtDevReady();
         await this.page.goto('http://localhost:3000');
-        await this.page.waitForSelector('.foo');
+        await this.page.locator('.foo').waitFor({ state: 'attached' });
       } finally {
         await kill(nuxt.pid);
       }
@@ -387,6 +388,7 @@ export default tester(
       });
 
       const oldNodeOptions = process.env.NODE_OPTIONS;
+      // Remove babel Node.js loader for tests temporarily
       process.env.NODE_OPTIONS = '';
       const output = await execa(resolver.resolve('./cli.js'), ['build']);
 
@@ -403,7 +405,7 @@ export default tester(
       try {
         await portReady(3000);
         await this.page.goto('http://localhost:3000');
-        await this.page.waitForSelector('.foo');
+        await this.page.locator('.foo').waitFor({ state: 'attached' });
       } finally {
         await kill(nuxt.pid);
         process.env.NODE_OPTIONS = oldNodeOptions;
@@ -506,7 +508,15 @@ export default tester(
   },
   [
     testerPluginTmpDir(),
-    testerPluginPuppeteer(),
+    {
+      async after() {
+        await this.browser.close();
+      },
+      async before() {
+        this.browser = await chromium.launch();
+        this.page = await this.browser.newPage();
+      },
+    },
     {
       beforeEach: () =>
         fs.outputFile(
