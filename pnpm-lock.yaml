@@ -17,6 +17,9 @@ importers:
       '@dword-design/vite-plugin-vue-babel':
         specifier: ^1.0.1
         version: 1.0.1(@babel/core@7.26.10)(@vitejs/plugin-vue@5.2.3(vite@6.2.5(@types/node@22.14.0)(jiti@2.4.2)(sass@1.62.1)(terser@5.39.0)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.3)))(vue@3.5.13(typescript@5.8.3))
+      '@nuxt/cli':
+        specifier: ^3
+        version: 3.24.1(magicast@0.3.5)
       '@rollup/plugin-babel':
         specifier: ^6.0.4
         version: 6.0.4(@babel/core@7.26.10)(@types/babel__core@7.20.5)(rollup@4.39.0)
@@ -35,9 +38,6 @@ importers:
       execa:
         specifier: ^9.5.2
         version: 9.5.2
-      nuxi:
-        specifier: ^3
-        version: 3.24.1
       suppress-experimental-warnings:
         specifier: ^2.0.0
         version: 2.0.0
@@ -5720,11 +5720,6 @@ packages:
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
-
-  nuxi@3.24.1:
-    resolution: {integrity: sha512-78r93j0+03YxMLeCWNAqPRKO/6pGHIpmRrnrwR+ff0nRJ785uddqMzLfGDMAXVG7OtSnBNm0vHkSGsUZID7bkw==}
-    engines: {node: ^16.10.0 || >=18.0.0}
-    hasBin: true
 
   nuxt-dev-ready@3.0.0:
     resolution: {integrity: sha512-7F+zTD0I/a7QZPUpnFq4WWt8TbMYUYRjQTKBnFLayIYqx6a5k8w61n9aS3gafHwRGBEX00mPv7ggn0n3b004Cg==}
@@ -14983,8 +14978,6 @@ snapshots:
   nth-check@2.1.1:
     dependencies:
       boolbase: 1.0.0
-
-  nuxi@3.24.1: {}
 
   nuxt-dev-ready@3.0.0:
     dependencies:
