@@ -1,6 +1,6 @@
 import vitePluginVueBabel from '@dword-design/vite-plugin-vue-babel';
+import { runCommand } from '@nuxt/cli';
 import { babel as rollupPluginBabel } from '@rollup/plugin-babel';
-import { runCommand } from 'nuxi';
 import vitePluginBabel from 'vite-plugin-babel';
 
 export default (command, args) =>
