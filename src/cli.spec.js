@@ -487,10 +487,7 @@ export default tester(
         `,
       });
 
-      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
-        env: { NODE_ENV: '' },
-        stdio: 'inherit',
-      });
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], { env: { NODE_ENV: '' } });
 
       try {
         await nuxtDevReady();
