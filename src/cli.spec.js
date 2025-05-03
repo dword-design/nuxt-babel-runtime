@@ -288,6 +288,70 @@ export default tester(
         await kill(nuxt.pid);
       }
     },
+    'do not transpile browser js in node_modules': async () => {
+      await outputFiles({
+        'node_modules/foo': {
+          'index.js': 'export default 1 |> x => x * 2;',
+          'package.json': JSON.stringify({
+            main: 'index.js',
+            name: 'foo',
+            type: 'module',
+          }),
+        },
+        'package.json': JSON.stringify({
+          dependencies: { foo: '*' },
+          type: 'module',
+        }),
+        'pages/index.vue': endent`
+          <template>
+            <div>{{ foo }}</div>
+          </template>
+
+          <script setup>
+          import foo from 'foo'
+          </script>
+        `,
+      });
+
+      await expect(
+        execa(resolver.resolve('./cli.js'), ['build']),
+      ).rejects.toThrow('Expression expected');
+    },
+    'do not transpile server js in node_modules': async () => {
+      await outputFiles({
+        'node_modules/foo': {
+          'index.js': 'export default 1 |> x => x * 2;',
+          'package.json': JSON.stringify({
+            main: 'index.js',
+            name: 'foo',
+            type: 'module',
+          }),
+        },
+        'package.json': JSON.stringify({
+          dependencies: { foo: '*' },
+          type: 'module',
+        }),
+        'server/api/foo.js': endent`
+          import foo from 'foo';
+
+          export default defineEventHandler(() => foo);
+        `,
+      });
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev']);
+
+      try {
+        await nuxtDevReady();
+
+        await expect(
+          axios.get('http://localhost:3000/api/foo'),
+        ).rejects.toMatchObject({
+          response: { data: { message: "Unexpected token '>'" } },
+        });
+      } finally {
+        await kill(nuxt.pid);
+      }
+    },
     'do not transpile vue in node_modules': async () => {
       await outputFiles({
         'node_modules/foo': {
