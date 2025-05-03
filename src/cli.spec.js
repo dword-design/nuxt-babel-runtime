@@ -474,6 +474,47 @@ export default tester(
         process.env.NODE_OPTIONS = oldNodeOptions;
       }
     },
+    async 'hot reload component'() {
+      await outputFiles({
+        'pages/index.vue': endent`
+          <template>
+            <div class="foo">{{ foo }}</div>
+          </template>
+
+          <script setup>
+          const foo = 1 |> x => x * 2;
+          </script>
+        `,
+      });
+
+      const nuxt = execa(resolver.resolve('./cli.js'), ['dev'], {
+        env: { NODE_ENV: '' },
+        stdio: 'inherit',
+      });
+
+      try {
+        await nuxtDevReady();
+        await this.page.goto('http://localhost:3000');
+        await this.page.locator('.foo').waitFor({ state: 'attached' });
+
+        await fs.outputFile(
+          'pages/index.vue',
+          endent`
+            <template>
+              <div class="bar">{{ foo }}</div>
+            </template>
+
+            <script setup>
+            const foo = 1 |> x => x * 2;
+            </script>
+          `,
+        );
+
+        await this.page.locator('.bar').waitFor({ state: 'attached' });
+      } finally {
+        await kill(nuxt.pid);
+      }
+    },
     module: async () => {
       await fs.outputFile(
         'modules/foo.js',
