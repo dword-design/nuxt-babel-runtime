@@ -405,7 +405,6 @@ export default tester(
                 inline: [resolver.resolve('./model')],
               },
             },
-            vite: { server: { allowedHosts: ['3000-dworddesign-nuxtbabelru-627nk6ggejf.ws-eu118.gitpod.io'] } },
           };
         `,
         'pages/index.vue': endent`
