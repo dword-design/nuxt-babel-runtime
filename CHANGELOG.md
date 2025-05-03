@@ -1,3 +1,10 @@
+## [5.0.12](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.11...v5.0.12) (2025-05-03)
+
+
+### Bug Fixes
+
+* do not transpile node_modules ([80de6d2](https://github.com/dword-design/nuxt-babel-runtime/commit/80de6d2639488c26cda7c1c100aa88824fb75343))
+
 ## [5.0.11](https://github.com/dword-design/nuxt-babel-runtime/compare/v5.0.10...v5.0.11) (2025-04-13)
 
 
