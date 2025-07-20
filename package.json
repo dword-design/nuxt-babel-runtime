@@ -51,7 +51,7 @@
     "playwright": "^1.51.1",
     "playwright-chromium": "^1.51.1",
     "port-ready": "^0.1.0",
-    "tree-kill-promise": "^3.0.14"
+    "tree-kill-promise": "^4.0.0"
   },
   "peerDependencies": {
     "@nuxt/cli": "^3",
