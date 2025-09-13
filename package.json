@@ -45,7 +45,7 @@
     "@dword-design/tester-plugin-tmp-dir": "^2.1.26",
     "axios": "^1.8.4",
     "fs-extra": "^11.3.0",
-    "nuxt": "^3.16.1",
+    "nuxt": "^4.0.0",
     "nuxt-dev-ready": "^3.0.0",
     "output-files": "^2.0.32",
     "playwright": "^1.51.1",
