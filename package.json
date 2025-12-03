@@ -47,7 +47,7 @@
     "fs-extra": "^11.3.0",
     "nuxt": "^3.16.1",
     "nuxt-dev-ready": "^3.0.0",
-    "output-files": "^2.0.32",
+    "output-files": "^3.0.0",
     "playwright": "^1.51.1",
     "playwright-chromium": "^1.51.1",
     "port-ready": "^0.1.0",

@@ -73,8 +73,8 @@ importers:
         specifier: ^3.0.0
         version: 3.0.0
       output-files:
-        specifier: ^2.0.32
-        version: 2.0.32
+        specifier: ^3.0.0
+        version: 3.0.0
       playwright:
         specifier: ^1.51.1
         version: 1.52.0
@@ -5953,6 +5953,7 @@ packages:
   mocha-ui-exports-auto-describe@3.0.0:
     resolution: {integrity: sha512-sS2UPuGMR/HCFUduIiUgBgRhbuy+xf88IGGMX+urMfN5hvoKQngZT+XiZQyjCRDy6RToxhbmSEeA055PnjXQ7Q==}
     engines: {node: '>=16'}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   mocha@10.8.2:
     resolution: {integrity: sha512-VZlYo/WE8t1tstuRmqgeyBgCbJc/lEdopaa+axcKzTBJ+UIdlAB9XnmvTCAH4pwR4ElNInaedhEBmZD8iCSVEg==}
@@ -6353,6 +6354,10 @@ packages:
   output-files@2.0.32:
     resolution: {integrity: sha512-E4lArd+sN7ILmv2jAasFoXP6XGvaKGTYNKSNHBn+zcGSWzrYXye5Y5L6v2yCrDyXESGKVGrvr5fsd8TUvRYvOQ==}
     engines: {node: '>=14'}
+
+  output-files@3.0.0:
+    resolution: {integrity: sha512-mFwRkTDiw6evbQW1G6To+Yp7tN2WOVh8ne7AyzTRWtqPU+Sza3ZhtXEO3vpLnaYPYEIUSrlILeZVp0rOmcA5Kw==}
+    engines: {node: '>=18'}
 
   own-keys@1.0.1:
     resolution: {integrity: sha512-qFOyK5PjiWZd+QQIh+1jhdb9LpxTF0qs7Pm8o5QHYZ0M3vKqSqzsZaEB6oWlxZ+q2sJBMI/Ktgd2N5ZwQoRHfg==}
@@ -16459,6 +16464,10 @@ snapshots:
   output-files@2.0.32:
     dependencies:
       '@dword-design/functions': 4.1.7
+      fs-extra: 11.3.0
+
+  output-files@3.0.0:
+    dependencies:
       fs-extra: 11.3.0
 
   own-keys@1.0.1:
